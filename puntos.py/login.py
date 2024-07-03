@@ -15,10 +15,10 @@ entry_nombre = None
 entry_password = None
 
 def mostrar_opciones():
-    """Muestra las opciones principales en la ventana.
-    
-    Esta función crea y muestra los botones para registrar un nuevo usuario 
-    e iniciar sesión.
+    """
+    Muestra las opciones principales en la ventana inicial del sistema.
+
+    Esta función crea y muestra botones para registrar un nuevo usuario e iniciar sesión.
     """
     # Definir y colocar los widgets necesarios
     label_opciones = tk.Label(ventana, text="¿Qué quieres hacer?")
@@ -33,11 +33,11 @@ def mostrar_opciones():
     btn_iniciar_sesion.pack(pady=5)
 
 def mostrar_formulario_registrar():
-    """Muestra el formulario para registrar un nuevo usuario.
-    
-    Esta función limpia la ventana y coloca los widgets necesarios para 
-    registrar un nuevo usuario, incluyendo entradas de nombre, contraseña 
-    y selección de rol.
+    """
+    Muestra el formulario para registrar un nuevo usuario.
+
+    Esta función limpia la ventana y coloca los widgets necesarios para registrar un nuevo usuario,
+    incluyendo entradas de nombre, contraseña y selección de rol.
     """
     global entry_nombre, entry_password
     limpiar_ventana()
@@ -72,9 +72,9 @@ def mostrar_formulario_registrar():
 def mostrar_formulario_iniciar_sesion():
     """
     Muestra el formulario para iniciar sesión.
-    
-    Esta función limpia la ventana y coloca los widgets necesarios para 
-    iniciar sesión, incluyendo entradas de nombre y contraseña.
+
+    Esta función limpia la ventana y coloca los widgets necesarios para iniciar sesión,
+    incluyendo entradas de nombre y contraseña.
     """
     global entry_nombre, entry_password
     limpiar_ventana()
@@ -99,9 +99,9 @@ def mostrar_formulario_iniciar_sesion():
 def limpiar_ventana():
     """
     Limpia todos los widgets de la ventana.
-    
-    Esta función elimina todos los widgets actuales de la ventana para 
-    permitir la visualización de nuevos formularios u opciones.
+
+    Esta función elimina todos los widgets actuales de la ventana para permitir la visualización
+    de nuevos formularios u opciones.
     """
     for widget in ventana.winfo_children():
         widget.pack_forget()
@@ -109,15 +109,14 @@ def limpiar_ventana():
 def registrar_usuario(nombre, contrasenia, rol_elegido):
     """
     Registra un nuevo usuario en el sistema.
-    
+
     Args:
         nombre (str): Nombre del usuario.
         contrasenia (str): Contraseña del usuario.
         rol_elegido (str): Rol seleccionado para el usuario.
-    
-    Esta función valida los campos de entrada, crea un nuevo objeto Usuario y 
-    lo registra en la base de datos. Muestra un mensaje de éxito o error según 
-    corresponda.
+
+    Esta función valida los campos de entrada, crea un nuevo objeto Usuario y lo registra en la base de datos.
+    Muestra un mensaje de éxito o error según corresponda.
     """
     # Obtener el ID del rol seleccionado
     if rol_elegido == "Usuario Común":
@@ -151,14 +150,13 @@ def registrar_usuario(nombre, contrasenia, rol_elegido):
 def iniciar_sesion(nombre, contrasenia):
     """
     Inicia sesión en el sistema.
-    
+
     Args:
         nombre (str): Nombre del usuario.
         contrasenia (str): Contraseña del usuario.
-    
-    Esta función valida los campos de entrada, verifica las credenciales del 
-    usuario en la base de datos y, si son correctas, inicia la aplicación 
-    principal. Muestra un mensaje de éxito o error según corresponda.
+
+    Esta función valida los campos de entrada, verifica las credenciales del usuario en la base de datos
+    y, si son correctas, inicia la aplicación principal. Muestra un mensaje de éxito o error según corresponda.
     """
     # Validar que los campos no estén vacíos
     if nombre == "" or contrasenia == "":
@@ -174,17 +172,17 @@ def iniciar_sesion(nombre, contrasenia):
         # Cerrar la ventana actual de inicio de sesión
         ventana.destroy()
 
+        # Iniciar la aplicación principal
         root = tk.Tk()
         app = RegistrarTiqueApp(root)
         root.mainloop()
-    
+
     else:
         messagebox.showerror("Inicio de sesión fallido", "Credenciales incorrectas")
 
     # Limpiar los campos de entrada
     entry_nombre.delete(0, "end")
     entry_password.delete(0, "end")
-
 
 
 # Mostrar las opciones al iniciar la aplicación

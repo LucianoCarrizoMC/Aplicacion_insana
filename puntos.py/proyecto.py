@@ -11,9 +11,59 @@ from Estado import Estado
 from Tipo import Tipo
 
 class RegistrarTiqueApp:
-    """Aplicación para registrar tiques.
+    class RegistrarTiqueApp:
+        """Aplicación para registrar tiques.
+
     Esta aplicación permite registrar tiques de servicio, consultar y eliminar tiques existentes.
-     """
+    Utiliza Tkinter para la interfaz gráfica y se conecta a una base de datos mediante un objeto DAO
+    para gestionar la interacción con los datos.
+
+    Attributes:
+        root (tk.Tk): La ventana raíz de la aplicación.
+        rut_var (tk.StringVar): Variable para almacenar el RUT del cliente.
+        nombre_cliente_var (tk.StringVar): Variable para almacenar el nombre del cliente.
+        telefono_var (tk.StringVar): Variable para almacenar el teléfono del cliente.
+        correo_var (tk.StringVar): Variable para almacenar el correo electrónico del cliente.
+        tipo_var (tk.StringVar): Variable para almacenar el tipo de tique seleccionado.
+        criticidad_var (tk.StringVar): Variable para almacenar la criticidad seleccionada.
+        detalle_servicio_var (tk.StringVar): Variable para almacenar el detalle del servicio ingresado.
+        detalle_problema_var (tk.StringVar): Variable para almacenar el detalle del problema ingresado.
+        area_var (tk.StringVar): Variable para almacenar el área seleccionada para derivar el tique.
+        id_area_seleccionada (int): ID del área seleccionada.
+        id_criticidad_seleccionada (int): ID de la criticidad seleccionada.
+        id_tipo_tique_seleccionado (int): ID del tipo de tique seleccionado.
+        rut_cliente_var (tk.StringVar): Variable para almacenar el RUT del cliente al buscar tiques.
+
+    Methods:
+        __init__(self, root):
+            Inicializa la aplicación de registro de tiques.
+            Configura la interfaz gráfica, inicializa las variables y configura los eventos.
+
+        actualizar_id_criticidad(self, *args):
+            Actualiza el ID de la criticidad seleccionada según la opción del menú desplegable.
+
+        actualizar_id_area(self, *args):
+            Actualiza el ID del área seleccionada según la opción del menú desplegable.
+
+        actualizar_id_tipo(self, *args):
+            Actualiza el ID del tipo de tique seleccionado según la opción del menú desplegable.
+
+        registrar_tique(self):
+            Registra un nuevo tique en la base de datos utilizando los datos ingresados por el usuario.
+
+        obtener_tiques(self):
+            Obtiene la lista de tiques desde la base de datos y muestra los resultados en el treeview.
+
+        buscar_tiques_por_rut(self):
+            Busca tiques en la base de datos según el RUT del cliente ingresado por el usuario.
+
+        mostrar_tique_seleccionado(self, event):
+            Muestra los detalles del tique seleccionado en el treeview cuando se hace clic en él.
+
+        eliminar_tique(self):
+            Elimina el tique seleccionado de la base de datos.
+    """
+
     
     def __init__(self, root):
         """Inicializa la aplicación de registro de tiques.
@@ -128,8 +178,11 @@ class RegistrarTiqueApp:
         tk.Button(frame, text="Eliminar Tique", command=self.eliminar_tique).grid(row=12, column=0, padx=5, pady=5)
 
     def actualizar_id_criticidad(self, *args):
-        """Actualizar el ID del área seleccionada
-        """  
+        """Actualiza el ID de la criticidad seleccionada en función del valor seleccionado en el menú desplegable.
+        
+        Args:
+            *args: Argumentos adicionales (no utilizados).
+        """ 
         selected_criticidad = self.criticidad_var.get()
     
         # Si la criticidad seleccionada no es la opcion predeterminada, buscamos el objeto criticidad correspondiente en la lista de criticidades
@@ -150,7 +203,10 @@ class RegistrarTiqueApp:
         print("ID de Criticidad seleccionada:", self.id_criticidad_seleccionada)
 
     def actualizar_id_area(self, *args):
-        """Actualizar el ID de la criticidad seleccionada
+        """Actualiza el ID del área seleccionada en función del valor seleccionado en el menú desplegable.
+        
+        Args:
+            *args: Argumentos adicionales (no utilizados).
         """ 
         selected_area = self.area_var.get()
 
@@ -172,7 +228,10 @@ class RegistrarTiqueApp:
         print("ID de Área seleccionada:", self.id_area_seleccionada)
 
     def actualizar_id_tipo(self, *args):
-        """Actualizar el ID del tipo de tique seleccionado
+        """Actualiza el ID del tipo de tique seleccionado en función del valor seleccionado en el menú desplegable.
+        
+        Args:
+            *args: Argumentos adicionales (no utilizados).
         """  
         selected_tipo = self.tipo_var.get()
         
